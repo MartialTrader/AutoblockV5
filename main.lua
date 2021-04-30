@@ -53,12 +53,8 @@ end
 
 workspace.DescendantAdded:Connect(function(descendant)
 	local MAIN_FUNCTION = coroutine.create(function()
-		while wait() do
-			if (HumanoidRootPart.Position - descendant.Position).magnitude <= blockRangeInStuds then
-				BlockSpell()
-				break
-			end
-		end
+		print(descendant.Name)
+		BlockSpell()
 	end)
 	coroutine.resume(MAIN_FUNCTION)
 end)
