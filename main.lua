@@ -14,7 +14,7 @@ If you leak, i'll be adding your name to the banlist.
 Script Auto-Updates ;)
 ]]--
 
-print("Autoblock v5 loaded.")
+print("Loaded")
 
 -- Region3 Variable
 
@@ -53,7 +53,12 @@ end
 
 local MAIN_FUNCTION = coroutine.create(function()
 	workspace.DescendantAdded:Connect(function(descendant)
-		BlockSpell()
+		while wait() do
+			if (HumanoidRootPart.Position - descendant.Position).magnitude <= blockRangeInStuds then
+				BlockSpell()
+				break
+			end
+		end
 	end)
 end)
 
