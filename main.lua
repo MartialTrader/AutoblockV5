@@ -14,8 +14,7 @@ If you leak, i'll be adding your name to the banlist.
 Script Auto-Updates ;)
 ]]--
 
-print("Autoblock V5 loaded.")
-
+print("Autoblock v5 loaded.")
 -- Region3 Variable
 
 local blockRegion = Region3.new(Vector3.new(), Vector3.new())
@@ -52,20 +51,11 @@ end
 -- Main Functions:
 
 local MAIN_FUNCTION = coroutine.create(function()
-	while true do
-		wait()
-		for i, projectiles in pairs(workspace:GetDescendants()) do
-			if projectiles.Name == table.find(SPELLS_TO_BLOCK, projectiles.Name) then
-				if (HumanoidRootPart.Position - projectiles.Position).magnitude <= blockRangeInStuds then
-					if CheckIfAble(Player, {mode = "check"}) == true then
-						BlockSpell()
-						print("Blocked spell: "..projectiles.Name)
-						wait(1)
-					end
-				end
-			end
+	workspace.DescendantAdded:Connect(function(descendant)
+		if descendant.Name == table.find(SPELLS_TO_BLOCK, descendant.Name) then
+			BlockSpell()
 		end
-	end
+	end)
 end)
 
 coroutine.resume(MAIN_FUNCTION)
