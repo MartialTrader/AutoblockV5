@@ -53,8 +53,10 @@ end
 
 workspace.DescendantAdded:Connect(function(descendant)
 	local MAIN_FUNCTION = coroutine.create(function()
-		print(descendant.Trail.Color)
-		BlockSpell()
+		if descendant:FindFirstChild("Trail") ~= nil then
+			BlockSpell()
+			print(">>> "..descendant.Trail.Color)
+		end
 	end)
 	coroutine.resume(MAIN_FUNCTION)
 end)
