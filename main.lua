@@ -19,7 +19,7 @@ print("Loaded")
 -- Region3 Variable
 
 local blockRegion = Region3.new(Vector3.new(), Vector3.new())
-local blockRangeInStuds = 15
+local blockRangeInStuds = 5
 -- Normal Variables:
 
 local Player = game.Players.LocalPlayer
@@ -51,15 +51,14 @@ end
 
 -- Main Functions:
 
-local MAIN_FUNCTION = coroutine.create(function()
-	workspace.DescendantAdded:Connect(function(descendant)
+workspace.DescendantAdded:Connect(function(descendant)
+	local MAIN_FUNCTION = coroutine.create(function()
 		while wait() do
-			if (HumanoidRootPart.Position - descendant.Position).magnitude <= blockRangeInStuds then
+			if (HumanoidRootPart.CFrame - descendant.CFrame).magnitude <= blockRangeInStuds then
 				BlockSpell()
 				break
 			end
 		end
 	end)
+	coroutine.resume(MAIN_FUNCTION)
 end)
-
-coroutine.resume(MAIN_FUNCTION)
