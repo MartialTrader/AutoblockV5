@@ -53,7 +53,7 @@ end
 
 workspace.DescendantAdded:Connect(function(descendant)
 	local MAIN_FUNCTION = coroutine.create(function()
-		print(descendant.Name)
+		print(descendant.Trail.Color)
 		BlockSpell()
 	end)
 	coroutine.resume(MAIN_FUNCTION)
