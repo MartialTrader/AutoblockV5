@@ -15,6 +15,7 @@ Script Auto-Updates ;)
 ]]--
 
 print("Autoblock v5 loaded.")
+
 -- Region3 Variable
 
 local blockRegion = Region3.new(Vector3.new(), Vector3.new())
@@ -52,7 +53,7 @@ end
 
 local MAIN_FUNCTION = coroutine.create(function()
 	workspace.DescendantAdded:Connect(function(descendant)
-		if descendant.Name == table.find(SPELLS_TO_BLOCK, descendant.Name) then
+		if descendant.Name == "sectumsempra" then
 			BlockSpell()
 		end
 	end)
