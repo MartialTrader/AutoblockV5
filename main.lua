@@ -54,7 +54,7 @@ end
 workspace.DescendantAdded:Connect(function(descendant)
 	local MAIN_FUNCTION = coroutine.create(function()
 		while wait() do
-			if (HumanoidRootPart.CFrame - descendant.CFrame).magnitude <= blockRangeInStuds then
+			if (HumanoidRootPart.Position - descendant.Position).magnitude <= blockRangeInStuds then
 				BlockSpell()
 				break
 			end
