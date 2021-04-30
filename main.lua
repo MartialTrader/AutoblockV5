@@ -53,9 +53,7 @@ end
 
 local MAIN_FUNCTION = coroutine.create(function()
 	workspace.DescendantAdded:Connect(function(descendant)
-		if descendant.Name == "sectumsempra" then
-			BlockSpell()
-		end
+		BlockSpell()
 	end)
 end)
 
