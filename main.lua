@@ -53,16 +53,16 @@ end
 
 workspace.DescendantAdded:Connect(function(descendant)
 	local MAIN_FUNCTION = coroutine.create(function()
-		while true do
-			wait()
-			if (HumanoidRootPart.Position - descendant.Position) <= blockRangeInStuds then
-				if descendant:FindFirstChild("Trail") ~= nil then
-					BlockSpell()
-					print(">>> "..descendant.Trail.Color)
-					break
+		if descendant:FindFirstChild("Trail") ~= nil then
+			while true do
+				wait()
+				if (HumanoidRootPart.Position - descendant.Position) or (HumanoidRootPart.Position - Descendant.WorldPosition).magnitude <= blockRangeInStuds then
+						BlockSpell()
+						print(">>> "..descendant.Trail.Color)
+						break
+					end
 				end
 			end
-		end
 	end)
 	coroutine.resume(MAIN_FUNCTION)
 end)
