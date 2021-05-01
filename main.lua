@@ -1,16 +1,83 @@
 --[[
-
 V2.
-Using Region3 and Magnitude. (Used .Touched before but always broke)
 
 For Team Demolish.
-
 Made by Martial / DemolishSanity
 
-Say 'Hello' to power.
+Don't bother reverse engineering.
+It's obfuscated and I made a Whitelist system for it.
+Good luck.
 
-DON'T LEAK.
-If you leak, i'll be adding your name to the banlist.
-Script Auto-Updates ;)
+Obfuscated with Synapse Xen
+
+- Using Region3 and Magnitude.
+- Using GuiToLua 3.2
+- Using 
 ]]--
-local a={"avalynn","scary_lord10",""}local b={"DemolishSanity","TestingWLScript","DemolishSaints","DemolishSpirits"}if game.Players.LocalPLayer.Name==table.find(a,game.Players.LocalPlayer.Name)then game.Players.LocalPlayer:Kick("You are banned from using this script. Appeal at DemolishSanity#9999")elseif game.Players.LocalPlayer.Name~=table.find(b,game.Players.LocalPlayer.Name)then game.Players.LocalPlayer.Name:Kick("You are not whitelisted. Whitelist at DemolishSanity#9999")end;print("Loaded")local c=Region3.new(Vector3.new(),Vector3.new())local d=2;local e=game.Players.LocalPlayer;local f=e.Character;local g=f.HumanoidRootPart;local h={"avada kedavra","crucio","imperio"}local function i()game:GetService("ReplicatedStorage").Events.WandEvent:FireServer(3)wait(1)end;local function j(k,l)local m=k.Character;if m.Humanoid:GetState()==Enum.HumanoidStateType.Dead then return false else return true end end;workspace.DescendantAdded:Connect(function(n)local o=coroutine.create(function()if n:FindFirstChild("Trail")~=nil then while true do wait()if g.Position-n.Position or(g.Position-Descendant.WorldPosition).magnitude<d then i()print(">>> "..n.Trail.Color.Keypoints[1])break end end end end)coroutine.resume(o)end)
+
+-- AntiLeak
+
+local BAN_LIST = {"avalynn","scary_lord10",""}
+local WHITE_LIST = {"DemolishSanity","TestingWLScript","DemolishSaints","DemolishSpirits"}
+
+local p = game.Players.LocalPlayer
+
+if p.Name == table.find(BAN_LIST, p.Name) then
+	p:Kick("You are banned from using this script. Appeal at DemolishSanity#9999")
+elseif p.Name ~= table.find(WHITE_LIST, p.Name) then
+	p.Name:Kick("You are not whitelisted. Whitelist at DemolishSanity#9999")
+end
+
+print("Loaded")
+
+-- Region3 Variable
+
+local blockRegion = Region3.new(Vector3.new(), Vector3.new())
+local blockRangeInStuds = 2
+
+-- Normal Variables
+
+local Player = game.Players.LocalPlayer
+local Character = Player.Character
+local HumanoidRootPart = Character.HumanoidRootPart
+
+-- Tables
+
+local SPELLS_TO_BLOCK = {
+	"avada kedavra", -- Color3 = not found
+	"crucio", -- Color3 = not found
+	"imperio" -- Color3 = not found
+}
+
+-- Functions
+
+local function BlockSpell()
+	game:GetService("ReplicatedStorage").Events.WandEvent:FireServer(3)
+	wait(1)
+end
+local function CheckIfAble(plr, arguments)
+	local char = plr.Character
+	if char.Humanoid:GetState() == Enum.HumanoidStateType.Dead then
+		return false
+	else
+		return true
+	end
+end
+
+-- Main Functions
+
+workspace.DescendantAdded:Connect(function(descendant)
+	local MAIN_FUNCTION = coroutine.create(function()
+		if descendant:FindFirstChild("Trail") ~= nil then
+			while true do
+				wait()
+				if (HumanoidRootPart.Position - descendant.Position) or (HumanoidRootPart.Position - Descendant.WorldPosition).magnitude < blockRangeInStuds then
+						BlockSpell()
+						print(">>> "..descendant.Trail.Color.Keypoints[1])
+						break
+					end
+				end
+			end
+	end)
+	coroutine.resume(MAIN_FUNCTION)
+end)
