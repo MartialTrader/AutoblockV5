@@ -74,7 +74,8 @@ end
 
 workspace.DescendantAdded:Connect(function(descendant)
 	local MAIN_FUNCTION = coroutine.create(function()
-		if descendant:FindFirstChild("Trail") ~= nil then
+		if descendant:IsA("Attachment") then
+			if not descendant:FindFirstChildOfClass("Trail") then return nil
 			while true do
 				wait()
 				if (HumanoidRootPart.Position - descendant.WorldPosition).magnitude < blockRangeInStuds then
