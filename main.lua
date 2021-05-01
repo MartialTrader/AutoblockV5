@@ -73,7 +73,6 @@ end
 -- Main Functions
 
 workspace.DescendantAdded:Connect(function(descendant)
-	local MAIN_FUNCTION = coroutine.create(function()
 		if descendant:IsA("Attachment") then
 			if not descendant:FindFirstChildOfClass("Trail") then return nil
 			while true do
@@ -84,6 +83,4 @@ workspace.DescendantAdded:Connect(function(descendant)
 					end
 				end
 			end
-	end)
-	coroutine.resume(MAIN_FUNCTION)
 end)
