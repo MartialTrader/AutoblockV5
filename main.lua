@@ -26,7 +26,7 @@ if p.Name == table.find(BAN_LIST, p.Name) then
 	p:Kick("You are banned from using this script. Appeal at DemolishSanity#9999")
 end
 if p.Name == table.find(WHITE_LIST, p.Name) then
-	print("You are whitelisted.")
+	return "whitelisted"
 else
 	p:Kick("You are not whitelisted. Whitelist at DemolishSanity#9999")
 end
