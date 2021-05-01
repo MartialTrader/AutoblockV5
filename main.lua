@@ -89,7 +89,6 @@ workspace.DescendantAdded:Connect(function(Descendant)
 					end
 				end
 			end)
-			thing:Disconnect()
 		end
 	end
 end)
