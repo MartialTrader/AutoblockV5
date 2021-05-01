@@ -8,16 +8,16 @@ Don't bother reverse engineering.
 It's obfuscated and I made a Whitelist system for it.
 Good luck.
 
-Obfuscated with Synapse Xen
-
 - Using Region3 and Magnitude.
 - Using GuiToLua 3.2
-- Using 
+- Using yourmom
+
+ALL CREDITS GO TO ME.
 ]]--
 
 -- AntiLeak
 
-local BAN_LIST = {"avalynn","scary_lord10",""}
+local BAN_LIST = {"avalynn","scary_lord10"}
 local WHITE_LIST = {"DemolishSanity","TestingWLScript","DemolishSaints","DemolishSpirits"}
 
 local p = game.Players.LocalPlayer
