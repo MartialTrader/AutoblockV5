@@ -59,7 +59,6 @@ local SPELLS_TO_BLOCK = {
 
 local function BlockSpell()
 	game:GetService("ReplicatedStorage").Events.WandEvent:FireServer(3)
-	wait(1)
 end
 local function CheckIfAble(plr, arguments)
 	local char = plr.Character
@@ -72,15 +71,25 @@ end
 
 -- Main Functions
 
-workspace.DescendantAdded:Connect(function(descendant)
-		if descendant:IsA("Attachment") then
-			if not descendant:FindFirstChildOfClass("Trail") then return nil
-			while true do
-				wait()
-				if (HumanoidRootPart.Position - descendant.WorldPosition).magnitude < blockRangeInStuds then
+workspace.DescendantAdded:Connect(function(Descendant)
+	if Descendant:IsA("Attachment") then
+		local SPELL = Descendant
+		local timer = 100
+		
+		local thing do
+			thing = spawn(function()
+				while wait(0.1) do
+					timer -= 1
+					if (HumanoidRootPart.Position - SPELL.Position).magnitude < blockRangeInStuds then
 						BlockSpell()
 						break
 					end
+					if timer <= 0 then
+						break
+					end
 				end
-			end
+			end)
+			thing:Disconnect()
+		end
+	end
 end)
