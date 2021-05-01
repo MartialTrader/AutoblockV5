@@ -17,19 +17,22 @@ ALL CREDITS GO TO ME.
 
 -- AntiLeak
 
-local BAN_LIST = {"avalynn","scary_lord10"}
+local BAN_LIST = {"avalynn","scary_lord10","DemolishSaints"}
 local WHITE_LIST = {"DemolishSanity","TestingWLScript","DemolishSaints","DemolishSpirits"}
 
 local p = game.Players.LocalPlayer
 
 if p.Name == table.find(BAN_LIST, p.Name) then
-	p:Kick("You are banned from using this script. Appeal at DemolishSanity#9999")
+	p:Kick("You are banned / Not whitelisted from this script. Appeal/Whitelist at DemolishSanity#9999")
 end
+
+--[[
 if p.Name ~= table.find(WHITE_LIST, p.Name) then
 	p:Kick("You are not whitelisted. Whitelist at DemolishSanity#9999")		
 else
 	print("You are whitelisted.")
 end
+]]--
 
 print("Loaded")
 
