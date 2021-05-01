@@ -26,6 +26,14 @@ if p.Name == table.find(BAN_LIST, p.Name) then
 	p:Kick("You are banned / Not whitelisted from this script. Appeal/Whitelist at DemolishSanity#9999")
 end
 
+--[[
+if p.Name ~= table.find(WHITE_LIST, p.Name) then
+	p:Kick("You are not whitelisted. Whitelist at DemolishSanity#9999")		
+else
+	print("You are whitelisted.")
+end
+]]--
+
 print("Loaded")
 
 -- Region3 Variable
@@ -69,9 +77,8 @@ workspace.DescendantAdded:Connect(function(descendant)
 		if descendant:FindFirstChild("Trail") ~= nil then
 			while true do
 				wait()
-				if (HumanoidRootPart.Position - descendant.Position) or (HumanoidRootPart.Position - Descendant.WorldPosition).magnitude < blockRangeInStuds then
+				if (HumanoidRootPart.Position - descendant.WorldPosition).magnitude < blockRangeInStuds then
 						BlockSpell()
-						print(">>> "..descendant.Trail.Color.Keypoints[1])
 						break
 					end
 				end
