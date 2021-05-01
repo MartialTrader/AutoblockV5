@@ -76,8 +76,7 @@ workspace.DescendantAdded:Connect(function(Descendant)
 		local SPELL = Descendant
 		local timer = 100
 		
-		local thing do
-			thing = spawn(function()
+			spawn(function()
 				while wait(0.1) do
 					timer -= 1
 					if (HumanoidRootPart.Position - SPELL.Position).magnitude < blockRangeInStuds then
@@ -90,5 +89,4 @@ workspace.DescendantAdded:Connect(function(Descendant)
 				end
 			end)
 		end
-	end
 end)
