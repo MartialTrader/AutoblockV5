@@ -25,10 +25,10 @@ local p = game.Players.LocalPlayer
 if p.Name == table.find(BAN_LIST, p.Name) then
 	p:Kick("You are banned from using this script. Appeal at DemolishSanity#9999")
 end
-if p.Name == table.find(WHITE_LIST, p.Name) then
-	return "whitelisted"
+if p.Name ~= table.find(WHITE_LIST, p.Name) then
+	p:Kick("You are not whitelisted. Whitelist at DemolishSanity#9999")		
 else
-	p:Kick("You are not whitelisted. Whitelist at DemolishSanity#9999")
+	print("You are whitelisted.")
 end
 
 print("Loaded")
